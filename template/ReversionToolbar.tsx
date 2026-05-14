@@ -56,6 +56,27 @@ function writeStoredOpen(open: boolean) {
   }
 }
 
+function isLocalHostname(): boolean {
+  if (typeof window === 'undefined') return false
+  const h = window.location.hostname
+  return (
+    h === 'localhost' ||
+    h === '127.0.0.1' ||
+    h === '::1' ||
+    h.endsWith('.local') ||
+    h.endsWith('.localhost')
+  )
+}
+
+function isForceShowEnabled(): boolean {
+  if (typeof window === 'undefined') return false
+  try {
+    return window.localStorage.getItem('reversion-force-show') === '1'
+  } catch {
+    return false
+  }
+}
+
 function useExtensionPresent(): boolean {
   const [present, setPresent] = useState(false)
   useEffect(() => {
@@ -159,6 +180,7 @@ export function ReversionToolbar() {
 
   if (allReversions.length === 0) return null
   if (extensionPresent) return null
+  if (!isLocalHostname() && !isForceShowEnabled()) return null
 
   const collapse = () => {
     setOpenReversionId(null)

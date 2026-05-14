@@ -24,7 +24,7 @@ Saving a *reversion choice* means picking which version of each reversion the pr
 - **Drag** the toolbar by its grip handle to reposition it. Position persists across reloads.
 - Closing the toolbar (×) collapses it to a 44px circle. The collapsed/expanded state persists.
 - Version selections persist in `localStorage`.
-- Works in **deployed** environments (Vercel, Netlify…), not just local dev. That's the point: send the link to stakeholders and let them compare.
+- **Local-only by default**: the page-side toolbar shows up automatically on `localhost` / `.local` so developers can iterate without installing anything. In production it stays hidden — the registry still publishes `window.reversion`, and the **[Reversion browser extension](https://chrome.google.com/webstore)** picks it up to inject its own toolbar for stakeholders. Set `localStorage.reversion-force-show = '1'` to force-show the page-side toolbar in production (handy for client demos when you can't ask them to install the extension).
 
 ## Who it's for
 

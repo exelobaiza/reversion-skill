@@ -14,7 +14,7 @@ Key behaviors:
 - **Draggable**: a grip handle on the left lets the user reposition the toolbar; position persists in `localStorage`.
 - **Version choice persists** in `localStorage` (key `prototype-reversions`).
 - **Download picks**: a download button (⬇️) in the toolbar exports the current selection as a Markdown file (`reversion-picks-<host>-<timestamp>.md`) that stakeholders can share back with the team. The file is self-contained: includes a human-readable table + a JSON block another agent can parse to apply the picks.
-- Works in deployed environments (Vercel, etc.) — no `NODE_ENV` gating by default, because stakeholders use it.
+- **Visibility model**: the page-side toolbar is shown only when running on a local hostname (`localhost`, `127.0.0.1`, `.local`, `.localhost`). In production it stays hidden by default — the Registry still exposes `window.reversion`, so the **Reversion browser extension** (separate repo) injects its own toolbar there. Escape hatch for demos without the extension: `localStorage.setItem('reversion-force-show', '1')`.
 
 ## When to use
 
