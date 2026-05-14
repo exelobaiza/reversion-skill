@@ -1,0 +1,35 @@
+import { Hero } from './Hero'
+import { HeroV1 } from './Hero_v1'
+import {
+  registerReversion,
+  useReversionInstance,
+  useReversionVersion,
+} from './prototype/ReversionRegistry'
+
+type HeroProps = {
+  onCtaClick?: (filmId: string) => void
+  onCitySelect?: (city: string) => void
+}
+
+const REVERSION_ID = 'hero'
+
+registerReversion({
+  id: REVERSION_ID,
+  label: 'Hero',
+  defaultVersionId: 'current',
+  versions: [
+    { id: 'current', label: 'Cartelera', component: Hero },
+    { id: 'v1', label: 'Slides', component: HeroV1 },
+  ],
+})
+
+export function HeroReversion(props: HeroProps) {
+  const [activeId] = useReversionVersion(REVERSION_ID, 'current')
+  const ref = useReversionInstance(REVERSION_ID)
+  const Component = activeId === 'v1' ? HeroV1 : Hero
+  return (
+    <div ref={ref} data-reversion={REVERSION_ID}>
+      <Component {...props} />
+    </div>
+  )
+}
