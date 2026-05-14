@@ -1,6 +1,6 @@
 ---
 name: reversion
-description: Add an Agentation-style floating pill toolbar to a React prototype that lets viewers switch between alternative versions of components (reversions) live. Open by default, draggable, only shows reversions whose component is currently in the viewport, highlights the target on hover, and persists choices in localStorage. Use when the user wants stakeholders to compare design alternatives in a deployed prototype without rebuilding, or mentions "reversion", "variant switcher", "version toggle", "compare versions", "A/B preview toolbar", "design switcher".
+description: Switch between alternative versions of React components live, via a floating pill toolbar. Use when comparing design alternatives in a deployed prototype, or when the user mentions reversion, variant switcher, version toggle, compare versions, A/B preview toolbar, or design switcher.
 ---
 
 # Reversion Toolbar
