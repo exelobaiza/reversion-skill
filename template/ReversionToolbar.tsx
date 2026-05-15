@@ -94,8 +94,14 @@ function useExtensionPresent(): boolean {
       if (attempts < 30) setTimeout(check, 100)
     }
     check()
+    const onChange = () => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      setPresent(!!(window as any).reversion?.__extensionPresent)
+    }
+    window.addEventListener('reversion:extension-changed', onChange)
     return () => {
       cancelled = true
+      window.removeEventListener('reversion:extension-changed', onChange)
     }
   }, [])
   return present
