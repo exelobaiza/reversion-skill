@@ -178,7 +178,6 @@ export function ReversionToolbar() {
     }
   }, [])
 
-  if (allReversions.length === 0) return null
   if (extensionPresent) return null
   if (!isLocalHostname() && !isForceShowEnabled()) return null
 
@@ -279,7 +278,9 @@ export function ReversionToolbar() {
                     whiteSpace: 'nowrap',
                   }}
                 >
-                  No hay reversiones en vista
+                  {allReversions.length === 0
+                    ? 'No reversions registered yet'
+                    : 'No reversions in view'}
                 </span>
               )}
               <button
